@@ -1,0 +1,40 @@
+class IssuesController < ApplicationController
+	def new
+		@issue = Issue.new
+		# 5.times { @article.assets.build }
+	end
+
+	def create
+    @issue = Issue.new(params[:issue])
+    if @issue.save
+      redirect_to @issue
+    else
+      render "new"
+    end
+  end
+
+  def show
+  	@issue = Issue.find(params[:id])
+  end
+
+  def index
+  	@issues = Issue.all
+  	respond_to do |format|
+  		format.html
+  		format.json { render json: @issues }
+  	end
+  end
+
+  def destroy
+  	@issue = Issue.find(params[:id])
+  	@issue.destroy
+  	redirect_to issues_path
+  end
+
+  def edit
+  	@issue = Issue.find(params[:id])
+  end
+
+  def update
+  end
+end

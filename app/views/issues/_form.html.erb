@@ -1,0 +1,37 @@
+<%= form_for @issue, :html => { :multipart => true } do |u| %>
+  <table>
+    <tr>
+        <td>   <%= u.label :name %></td>
+        <td>   <%= u.text_field :name, size: 30 %> </td>
+    </tr>
+    <tr>
+        <td>   <%= u.label :publisher %></td>
+        <td>   <%= u.text_field :publisher, size: 30 %> </td>
+    </tr>
+    <tr>
+        <td>   <%= u.label 'Issue Date' %></td>
+        <td>   <%= u.text_field :issue_date, size: 30 %> </td>
+    </tr>
+    <tr>
+        <td>   <%= u.label 'App Id' %></td>
+        <td>   <%= u.text_field :app_id, size: 30 %> </td>
+    </tr>
+    <tr>
+        <td>   <%= u.label 'Is free' %></td>
+        <td>   <%= u.check_box :is_free, size: 30 %> </td>
+    </tr>
+    <tr>
+        <td>   <%= u.label 'Upload Images' %></td>
+        <td>   <%= u.file_field('issue_images_image', multiple: true, name: "issue[images_attributes][][image]") %> </td>
+    </tr>
+    <tr>
+        <td>   <%= u.label 'Upload pdf' %></td>
+        <td>   <%= u.file_field('issue_attachments_attachment', multiple: true, name: "issue[attachments_attributes][][attachment]") %> </td>
+    </tr>
+    <tr>
+      <td colspan ="2">  <%= u.submit %> </td>
+    </tr>
+  </table>
+
+<% end %>
+<%= link_to "home", issues_path %>

@@ -1,0 +1,21 @@
+<h3>Name: <%= @issue.name %> </h3>
+<h5>Publisher: <%= @issue.publisher %> </h5>
+<h5>Issue Date: <%= @issue.issue_date %> </h5>
+<hr/>
+<div id ="image_display">
+	<h2>Images</h2>
+	<% @issue.images.each do |image| %>
+		<%= image_tag image.image.url(:thumb) %>
+	<% end %>
+</div>
+<br/>
+<div id="pdf links">
+	<h2>Pdfs</h2>
+	<% @issue.attachments.each do |attachment| %>
+		<%= link_to attachment.attachment_file_name, attachment.attachment.url(:original, false)%>
+	<% end %>
+</div>
+
+<br />
+<%= link_to "Edit", edit_issue_path, :class => "btn btn-primary" %>
+<%= link_to "Home", issues_path, :class => "btn btn-primary" %>

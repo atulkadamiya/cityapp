@@ -1,0 +1,13 @@
+<% if notice %>
+  <p id ="notice"> <%= notice %></p>
+<% end %>
+<% if alert %>
+  <p id ="alert"> <%= alert %></p>
+<% end %>
+<br/>
+
+<h3><%= @user.fname.capitalize %>
+	<% if @user.lname %><%= "  #{@user.lname.capitalize}" %><% end %></h3>
+<h3><%= @user.email %></h3>
+<hr/>
+

@@ -1,0 +1,50 @@
+<%= form_for @user, :html => { :multipart => true } do |u| %>
+
+<fieldset>
+ <legend>Enter User Details</legend>
+ <table>
+
+  <tr>
+   <div>
+    <td> <%= u.label 'First Name' %> </td>
+    <td>   <%= u.text_field :fname, size: 30 %> </td>
+   </div>
+  </tr>
+
+  <tr>
+   <div>
+    <td> <%= u.label 'Last Name' %> </td>
+    <td>   <%= u.text_field :lname, size: 30 %> </td>
+   </div>
+  </tr>
+
+  <tr>
+   <div>
+    <td>   <%= u.label :email %></td>
+    <td>   <%= u.text_field :email, size: 30 %> </td>
+   </div>
+  </tr>
+
+  <% if @user.new_record? %>
+   <tr>
+    <div>      
+     <td>   <%= u.label :password, 'Password' %> </td>
+     <td>   <%= u.password_field :password, size: 30 %> </td>
+    </div>
+   </tr>
+
+   <tr>
+    <div>
+     <td>  <%= u.label :password_confirmation, 'Confirm' %> </td>
+     <td>  <%= u.password_field :password_confirmation, size: 30 %> </td>
+    </div>
+   </tr>
+  <% end %>
+
+  <tr>
+    <td colspan ="2">  <%= u.submit %> </td>
+  </tr>
+ </table>
+
+</fieldset>
+<% end %>

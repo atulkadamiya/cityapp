@@ -1,0 +1,14 @@
+<% if flash[:alert] %> 
+	<p id = "alert"> <%= flash[:alert] %> </p>
+<% end %>
+<%= form_tag :action => :create do %>
+<br/>
+  <div class="field">
+    <%= label_tag :email %>
+    <%= text_field_tag :email, params[:email] %>
+  </div>
+  <br/>
+  <div class="actions">
+  	<%= submit_tag "Reset Password" %>
+  </div>
+<% end %>

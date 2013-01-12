@@ -1,0 +1,39 @@
+<div class="stack_form">
+  <% if flash[:alert] %>
+    <p id = "alert"><%= flash[:alert] %></p>
+   <% end %>
+  <% if flash[:notice] %>
+    <p id = "notice"><%= flash[:notice] %></p>
+  <% end %>
+
+  <%= form_tag do %>
+    <fieldset>
+      <legend>Please Log In</legend>
+      <table>
+        <tr>
+          <td> <%= label_tag :email, 'Email:' %> </td>
+          <td> <%= text_field_tag :email, params[:email] %> </td>
+        </tr>
+        <tr>
+          <td> <%= label_tag :password, 'Password:' %> </td>
+          <td> <%= password_field_tag :password, params[:password] %> </td>
+        </tr>
+        <tr>
+          <td colspan = "2"> <%= submit_tag "Login" %> </td>
+        </tr>
+        <tr>
+          <td> <%= link_to "Forget Password?", new_password_reset_path %> </td>
+        </tr>
+      </table>
+    </fieldset>
+  <% end %>
+  <br/>
+  <div id ="links">
+    <%= link_to "New User", new_user_path%>
+  </div>
+  <div id = "login">
+   You can also Login with:
+    <%= link_to(image_tag("Twitter.png", :width => 50, :height => 50), "/auth/twitter") %>
+    <%= link_to(image_tag("Facebook.png", :width => 50, :height => 50), "/auth/facebook") %>
+  </div>
+</div>
