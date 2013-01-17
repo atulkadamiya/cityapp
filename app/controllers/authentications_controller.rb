@@ -12,7 +12,6 @@ class AuthenticationsController < ApplicationController
   end
 
   def create
-    # raise request.env["omniauth.auth"].to_yaml
   	omniauth = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     if authentication && !current_user
@@ -25,7 +24,6 @@ class AuthenticationsController < ApplicationController
       flash[:alert] = "This account is already linked"
       redirect_to current_user
     else
-      # flash[:notice] = omniauth
       session[:omniauth] = omniauth.except('extra')
       redirect_to get_email_authentications_url
     end
@@ -40,13 +38,11 @@ class AuthenticationsController < ApplicationController
       session[:user_id] = @already_user.id
       redirect_to @already_user
     else
-      # flash[:notice] = omniauth
       @user = User.new(:email => omniauth[:info][:email])
     end
   end
 
   def save_detail
-    # @existing_user = User.find_by_email(params[:user][:email])
     @user = User.new(params[:user])
     omniauth = session[:omniauth]
     if omniauth[:info][:first_name]
@@ -60,7 +56,6 @@ class AuthenticationsController < ApplicationController
     respond_to do |format|
       if @user.save 
         session[:user_id] = @user.id
-        # UserNotifier.received(@user).deliver
         format.html { redirect_to @user, notice: 'User successfully created.' }
       else
         format.html { render action: "get_email" }

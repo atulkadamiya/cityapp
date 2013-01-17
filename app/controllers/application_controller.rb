@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     if session[:user_id]
       @current_user ||= User.find(session[:user_id])
     # elsif params[:token]
-      # @current_user ||= User.find_by_token(params[:token])      
+    #   @current_user ||= User.find_by_token(params[:token])      
     end
   end
 

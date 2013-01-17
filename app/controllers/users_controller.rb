@@ -6,6 +6,10 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all
+    respond_to do |format|
+      format.html
+      format.json { render json: @users}
+    end
   end
 
   def edit_password
@@ -27,6 +31,7 @@ class UsersController < ApplicationController
   def show
   	respond_to do |format|
   		format.html
+      format.json { render json: @user}
   	end
   end
 
@@ -43,6 +48,7 @@ class UsersController < ApplicationController
       if @user.save
         session[:user_id] = @user.id
         format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.json { render json: @user }
       else        
         format.html { render action: "new" }
       end
