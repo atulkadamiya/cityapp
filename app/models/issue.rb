@@ -8,4 +8,25 @@ class Issue < ActiveRecord::Base
 	accepts_nested_attributes_for :images, :allow_destroy => true
 
 	has_many :users, :through => :issues_users
+
+	def images_urls
+		a = []
+		self.images.each do |image|
+			a << image.image.url(:original)
+		end
+		a
+	end
+
+	def attachments_urls
+		a = []
+		self.attachments.each do |attachment|
+			a << attachment.attachment.url(:original, false)
+		end
+		a
+	end
+
+  def as_json(options = {})
+    super(:except => [:created_at, :updated_at], :methods => [:images_urls, :attachments_urls])
+  end
+
 end
