@@ -19,19 +19,19 @@ class Issue < ActiveRecord::Base
 	has_many :users, :through => :issues_users
 
 	def images_urls
-		a = []
+		uris = []
 		self.images.each do |image|
-			a << image.image.url(:original)
+			uris << image.image.url(:original)
 		end
-		a
+		uris
 	end
 
 	def attachments_urls
-		a = []
+		uris = []
 		self.attachments.each do |attachment|
-			a << attachment.attachment.url(:original, false)
+			uris << attachment.attachment.url(:original, false)
 		end
-		a
+		uris
 	end
 
   def as_json(options = {})
