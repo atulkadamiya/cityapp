@@ -3,5 +3,7 @@ class Attachment < ActiveRecord::Base
 
 	has_attached_file :attachment
 
+  validates_attachment_content_type :attachment, :content_type => ['application/pdf']
+
   belongs_to :issue
 end

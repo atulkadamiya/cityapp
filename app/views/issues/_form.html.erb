@@ -1,3 +1,14 @@
+<% if @issue.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@issue.errors.count, "error") %> prohibited this issue from being saved:</h2>
+    <ul>
+    <% @issue.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @issue, :html => { :multipart => true } do |u| %>
   <table>
     <tr>
@@ -9,7 +20,7 @@
         <td>   <%= u.text_field :publisher, size: 30 %> </td>
     </tr>
     <tr>
-        <td>   <%= u.label 'Issue Date' %></td>
+        <td>   <%= u.label 'Issue Date(dd/mm/yyyy)' %></td>
         <td>   <%= u.text_field :issue_date, size: 30 %> </td>
     </tr>
     <tr>
@@ -19,6 +30,10 @@
     <tr>
         <td>   <%= u.label 'Is free' %></td>
         <td>   <%= u.check_box :is_free, size: 30 %> </td>
+    </tr>
+    <tr>
+        <td>   <%= u.label 'Description' %></td>
+        <td>   <%= u.text_area :description, { :rows => 15, :cols => 30 } %> </td>
     </tr>
     <tr>
         <td>   <%= u.label 'Upload Images' %></td>

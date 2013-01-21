@@ -1,6 +1,15 @@
 class Issue < ActiveRecord::Base
-  attr_accessible :app_id, :is_free, :issue_date, :name, :publisher, :images_attributes, :attachments_attributes
-  
+  attr_accessible :app_id, :is_free, :issue_date, :name, :publisher, :images_attributes, :attachments_attributes, :description
+	
+	validates :app_id, :issue_date, :name, :publisher, :description, :presence => true
+	validates :images, :attachments, :presence => { :message => "not uploaded"}
+	
+	validate :happened_at_is_valid_datetime
+
+  def happened_at_is_valid_datetime
+    errors.add(:issue_date, 'must be a valid datetime') if ((DateTime.parse(issue_date) rescue ArgumentError) == ArgumentError)
+  end  
+
   has_many :attachments, :dependent => :destroy
 	accepts_nested_attributes_for :attachments, :allow_destroy => true
 

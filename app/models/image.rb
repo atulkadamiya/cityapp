@@ -6,8 +6,6 @@ class Image < ActiveRecord::Base
       :thumb=> "100x100#",
       :large => "600x600>"
     }
-  # def as_json(options = {})
-  #   super(:except => [:created_at, :updated_at])
-  # end
 
+  validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 end

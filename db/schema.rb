@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106140701) do
+ActiveRecord::Schema.define(:version => 20130121171423) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "issue_id"
@@ -45,8 +45,9 @@ ActiveRecord::Schema.define(:version => 20130106140701) do
     t.boolean  "is_free"
     t.string   "publisher"
     t.string   "app_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "description"
   end
 
   create_table "issues_users", :force => true do |t|
