@@ -7,7 +7,7 @@ class Issue < ActiveRecord::Base
 	validate :happened_at_is_valid_datetime
 
   def happened_at_is_valid_datetime
-    errors.add(:issue_date, 'must be a valid datetime') if ((DateTime.parse(issue_date) rescue ArgumentError) == ArgumentError)
+    errors.add(:issue_date, 'must be a valid date') if ((DateTime.parse(issue_date) rescue ArgumentError) == ArgumentError)
   end  
 
   has_many :attachments, :dependent => :destroy
