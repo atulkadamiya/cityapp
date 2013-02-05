@@ -23,6 +23,12 @@ class SharesController < ApplicationController
     @share = Share.new
   end
 
+  def delete
+    @share = Share.find(params[:id])
+    @share.destroy
+    redirect_to shares_path
+  end
+
   def create
     @share = Share.new(params[:share])    
     respond_to do |format|
