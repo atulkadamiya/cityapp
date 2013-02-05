@@ -10,7 +10,7 @@
     <% @shares.each do |share| %> 
       <tr>
         <td><%= share.id %></td>
-        <td><%= link_to (image_tag(share.image.url(:thumb)), share) %></td>
+        <td><%= link_to image_tag(share.image.url(:thumb)), {:action => 'show', :controller => 'shares'}, :class => 'dock-item' %></td>
         <td><%= link_to 'Delete', share_path(share.id), :method => :delete %></td>
       </tr>
     <% end %>
