@@ -23,7 +23,7 @@ class SharesController < ApplicationController
     @share = Share.new
   end
 
-  def delete
+  def destroy
     @share = Share.find(params[:id])
     @share.destroy
     redirect_to shares_path
