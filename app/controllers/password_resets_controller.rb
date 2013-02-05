@@ -1,5 +1,5 @@
 class PasswordResetsController < ApplicationController
-  # skip_before_filter :authorize
+  skip_before_filter :authorize
   # skip_before_filter :edit_authorize
 
   def create

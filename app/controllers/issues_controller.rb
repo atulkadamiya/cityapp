@@ -1,4 +1,6 @@
 class IssuesController < ApplicationController
+  skip_before_filter :authorize, :only => [:show, :index]
+
 	def new
 		@issue = Issue.new
 		# 5.times { @article.assets.build }

@@ -7,6 +7,8 @@ City::Application.routes.draw do
   resources :issues
   resources :users
 
+  resources :shares
+
   resources :authentications do
     collection do
       post 'save_detail'

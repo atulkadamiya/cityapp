@@ -1,3 +1,5 @@
+
+<span id = "flash"><%= flash[:notice] %></span>
 <h3> Issues </h3>
 <hr/>
 <div id ="issues_display">
@@ -21,3 +23,5 @@
   </table>
 </div>
 <%= link_to "Create New Issue", new_issue_path, :class => "btn btn-primary" %>
+<%= link_to "New Image for share", new_share_path, :class => "btn btn-primary" %>
+<%= link_to "All shared Images", shares_path, :class => "btn btn-primary" %>
