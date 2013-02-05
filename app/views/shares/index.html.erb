@@ -5,13 +5,15 @@
     <tr>
       <th>Image Id</th>
       <th>Image</th>
+      <th>display</th>
       <th>Delete</th>
     </tr>
     <% @shares.each do |share| %> 
       <tr>
         <td><%= share.id %></td>
-        <td><%= link_to image_tag(share.image.url(:thumb)), {share_path(share.id)}, :class => 'dock-item' %></td>
+        <td><%= image_tag(share.image.url(:thumb)) %></td>
         <td><%= link_to 'Delete', share_path(share.id), :method => :delete %></td>
+        <td><%= link_to "show", share %></td>
       </tr>
     <% end %>
   </table>
