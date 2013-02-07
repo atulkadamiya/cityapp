@@ -35,12 +35,12 @@ class Issue < ActiveRecord::Base
 	end
 
 	def preview_url
-		previews.first.item.url(:original, false)
+		previews.first.item.url(:original, false) if self.previews.any?
 	end
 
 
   def as_json(options = {})
-    super(:except => [:created_at, :updated_at], :methods => [:images_urls, :attachments_url, :preview_url])
+    super(:except => [:created_at, :updated_at], :methods => [:images_urls, :attachment_url, :preview_url])
   end
 
 end
