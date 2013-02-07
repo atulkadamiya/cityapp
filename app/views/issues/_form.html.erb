@@ -41,8 +41,13 @@
     </tr>
     <tr>
         <td>   <%= u.label 'Upload pdf' %></td>
-        <td>   <%= u.file_field('issue_attachments_attachment', multiple: true, name: "issue[attachments_attributes][][attachment]") %> </td>
+        <td>   <%= u.file_field('issue_attachments_attachment', multiple: false, name: "issue[attachments_attributes][][attachment]") %> </td>
     </tr>
+    <tr>
+        <td>   <%= u.label 'Upload preview pdf' %></td>
+        <td>   <%= u.file_field('issue_previews_attachment', multiple: false, name: "issue[previews_attributes][][item]") %> </td>
+    </tr>
+
     <tr>
       <td colspan ="2">  <%= u.submit %> </td>
     </tr>

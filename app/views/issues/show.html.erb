@@ -10,12 +10,22 @@
 	<% end %>
 </div>
 <br/>
-<div id="pdf links">
-	<h2>Pdfs</h2>
+<div id="pdf preview">
+	<h2>Pdf preview</h2>
+	<% @issue.previews.each do |attachment| %>
+		<%= link_to attachment.item_file_name, attachment.item.url(:original, false)%>
+	<% end %>
+</div>
+
+<br/>
+<div id="pdf">
+	<h2>Pdf</h2>
 	<% @issue.attachments.each do |attachment| %>
 		<%= link_to attachment.attachment_file_name, attachment.attachment.url(:original, false)%>
 	<% end %>
 </div>
+
+
 
 <br />
 <%= link_to "Edit", edit_issue_path, :class => "btn btn-primary" %>

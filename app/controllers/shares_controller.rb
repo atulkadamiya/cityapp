@@ -33,8 +33,9 @@ class SharesController < ApplicationController
     @share = Share.new(params[:share])    
     respond_to do |format|
       if @share.save
-        format.html { redirect_to @share, notice: 'Shared Image was successfully created.' }
-        format.json { render json: @share }
+        # format.html { redirect_to @share, notice: 'Shared Image was successfully created.' }
+        format.html { render json: share_url(@share), :status => 200 }
+        format.json { render json: share_url(@share) }        
       else        
         format.html { render action: "new" }
       end
