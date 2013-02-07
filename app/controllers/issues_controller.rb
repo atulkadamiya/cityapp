@@ -43,18 +43,18 @@ class IssuesController < ApplicationController
 
   def update
     @issue = Issue.find(params[:id])
-    attributes = {}
-    attachment_attributes = params[:issue][:attachment_attributes]
-    images_attributes = params[:issue][:images_attributes]
-    preview_attributes = params[:issue][:previews_attributes]
-    attributes.merge!(attachment_attributes)
-    attributes.merge!(images_attributes)
-    attributes.merge!(previews_attributes)
+    # attributes = {}
+    # attachment_attributes = params[:issue][:attachment_attributes]
+    # images_attributes = params[:issue][:images_attributes]
+    # preview_attributes = params[:issue][:previews_attributes]
+    # attributes.merge!(attachment_attributes)
+    # attributes.merge!(images_attributes)
+    # attributes.merge!(previews_attributes)
     if @issue.update_attributes(params[:issue])
       @issue.images.delete_all
       @issue.attachments.delete_all
       @issue.previews.delete_all
-      @issue.update_attributes(attributes)
+      @issue.update_attributes(params[:issue])
       redirect_to @issue
     else
       render "edit"
