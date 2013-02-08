@@ -54,8 +54,11 @@ class IssuesController < ApplicationController
       @issue.images.delete_all
       @issue.attachments.delete_all
       @issue.previews.delete_all
-      @issue.update_attributes(params[:issue])
-      redirect_to @issue
+      if @issue.update_attributes(params[:issue])
+        redirect_to @issue
+      else
+        render "edit"
+      end
     else
       render "edit"
     end

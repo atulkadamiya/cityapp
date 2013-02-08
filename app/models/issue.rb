@@ -31,11 +31,11 @@ class Issue < ActiveRecord::Base
 	end
 
 	def attachment_url
-		attachments.first.attachment.url(:original, false)
+		self.attachments.first.attachment.url(:original, false) if self.attachments.any?
 	end
 
 	def preview_url
-		previews.first.item.url(:original, false) if self.previews.any?
+		self.previews.first.item.url(:original, false) if self.previews.any?
 	end
 
 
