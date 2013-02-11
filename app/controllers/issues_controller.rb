@@ -51,9 +51,9 @@ class IssuesController < ApplicationController
     # attributes.merge!(images_attributes)
     # attributes.merge!(previews_attributes)
     if @issue.update_attributes(params[:issue])
-      @issue.images.delete_all
-      @issue.attachments.delete_all
-      @issue.previews.delete_all
+      @issue.images.delete_all if params[:issue][:images_attributes].present?
+      @issue.attachments.delete_all if params[:issue][:attachment_attributes].present?
+      @issue.previews.delete_all if params[:issue][:previews_attributes].present?
       if @issue.update_attributes(params[:issue])
         redirect_to @issue
       else
