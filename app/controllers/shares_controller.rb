@@ -1,5 +1,5 @@
 class SharesController < ApplicationController
-  skip_before_filter :authorize, :only => [:show, :index]
+  skip_before_filter :authorize
   # before_filter :finder, :only => [:show]
 
   
