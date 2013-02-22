@@ -24,7 +24,7 @@ class IssuesController < ApplicationController
   end
 
   def index
-  	@issues = Issue.all
+  	@issues = Issue.order('created_at desc')
   	respond_to do |format|
   		format.html
   		format.json { render json: @issues }
