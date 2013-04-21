@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   validates :email, :format => { :with => /\A[a-z A-Z]+(\.?)\w+@\w+\.{1,2}\w+\z/ }
   validates :email, :uniqueness => { :case_sensitive => false}, :if => proc { self.email.present?}
   validates :password, :presence => {:message => "password cannot be blank"}, :if => :password
+  validates :publisher, :presence => true
 
   has_many :issues, :through => :issues_users
   has_many :authentications
