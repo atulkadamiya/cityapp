@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_filter :authorize, :only => [:new, :create, :show, :index]
   # before_filter :edit_authorize, :only => :edit
   before_filter :finder, :only => [:show, :edit]
-
+  before_filter :super_admin?, :only => [:new, :edit]
   
   def index
     @users = User.all
@@ -46,7 +46,6 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])    
     respond_to do |format|
       if @user.save
-        session[:user_id] = @user.id
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user }
       else        

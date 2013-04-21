@@ -10,5 +10,5 @@
 	<% if @user.lname %><%= "  #{@user.lname.capitalize}" %><% end %></h3>
 <h3><%= @user.email %></h3>
 <hr/>
-<%= link_to "Home", :root%>
+<%= link_to "Home", issues_path %>
 

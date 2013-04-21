@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :fname, :lname, :password, :password_confirmation
+  attr_accessible :email, :fname, :lname, :password, :password_confirmation, :role, :publisher
   has_secure_password
 
   validates :email, :format => { :with => /\A[a-z A-Z]+(\.?)\w+@\w+\.{1,2}\w+\z/ }

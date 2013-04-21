@@ -15,10 +15,12 @@
         <td>   <%= u.label :name %></td>
         <td>   <%= u.text_field :name, size: 30 %> </td>
     </tr>
+    <% if super_admin? %>
     <tr>
         <td>   <%= u.label :publisher %></td>
         <td>   <%= u.text_field :publisher, size: 30 %> </td>
     </tr>
+    <% end %>
     <tr>
         <td>   <%= u.label 'Issue Date(dd/mm/yyyy)' %></td>
         <td>   <%= u.text_field :issue_date, size: 30 %> </td>

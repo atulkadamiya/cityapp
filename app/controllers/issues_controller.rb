@@ -8,6 +8,8 @@ class IssuesController < ApplicationController
 
 	def create
     @issue = Issue.new(params[:issue])
+    @issue.publisher_id = @current_user.id
+    @issue.publisher = @current_user.publisher unless super_admin?
     if @issue.save
       redirect_to @issue
     else
@@ -24,10 +26,16 @@ class IssuesController < ApplicationController
   end
 
   def index
-  	@issues = Issue.order('created_at desc')
+    if super_admin?
+    	@issues = Issue.order('created_at desc')
+    elsif current_user
+      @issues = Issue.where(:publisher => @current_user.publisher).order('created_at desc')
+    else
+      @issues = []
+    end
   	respond_to do |format|
   		format.html
-  		format.json { render json: @issues }
+  		format.json { render json: Issue.order('created_at desc') }
   	end
   end
 
@@ -43,13 +51,6 @@ class IssuesController < ApplicationController
 
   def update
     @issue = Issue.find(params[:id])
-    # attributes = {}
-    # attachment_attributes = params[:issue][:attachment_attributes]
-    # images_attributes = params[:issue][:images_attributes]
-    # preview_attributes = params[:issue][:previews_attributes]
-    # attributes.merge!(attachment_attributes)
-    # attributes.merge!(images_attributes)
-    # attributes.merge!(previews_attributes)
     if @issue.update_attributes(params[:issue])
       @issue.images.delete_all if params[:issue][:images_attributes].present?
       @issue.attachments.delete_all if params[:issue][:attachment_attributes].present?

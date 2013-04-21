@@ -1,5 +1,5 @@
 class Issue < ActiveRecord::Base
-  attr_accessible :app_id, :is_free, :issue_date, :name, :publisher, :images_attributes, :attachments_attributes, :description, :previews_attributes
+  attr_accessible :app_id, :is_free, :issue_date, :name, :publisher, :images_attributes, :attachments_attributes, :description, :previews_attributes, :user_id
 	
 	validates :issue_date, :name, :publisher, :description, :presence => true
 	validates :images, :attachments, :previews, :presence => { :message => "not uploaded"}

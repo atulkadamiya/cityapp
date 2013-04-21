@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   	@user = User.find_by_email(params[:email])
   	if @user and @user.authenticate(params[:password])
   		session[:user_id] = @user.id
-  		redirect_to @user
+  		redirect_to issues_path
   	else
   		redirect_to login_url, alert: "Invalid user/password combination"
   	end
@@ -13,6 +13,6 @@ class SessionsController < ApplicationController
   
   def destroy
     reset_session
-    redirect_to :root, alert: "Logged out"
+    redirect_to :login, alert: "Logged out"
   end
 end

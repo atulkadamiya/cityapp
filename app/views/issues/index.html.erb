@@ -1,4 +1,8 @@
-
+<% if super_admin? %>
+  <div id ="links">
+    <%= link_to "New User", new_user_path%>
+  </div>
+<% end %>
 <span id = "flash"><%= flash[:notice] %></span>
 <h3> Issues </h3>
 <hr/>
