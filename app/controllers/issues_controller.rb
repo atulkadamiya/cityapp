@@ -35,7 +35,11 @@ class IssuesController < ApplicationController
     end
   	respond_to do |format|
   		format.html
-  		format.json { render json: Issue.order('created_at desc') }
+      if params[:publisher].present?
+        format.json { render json: Issue.where('publisher = ?', params[:publisher]).order('created_at desc') }        
+      else
+  		  format.json { render json: Issue.where(:publisher => 'FirstCityMagazineDelhi').order('created_at desc') }
+      end
   	end
   end
 
