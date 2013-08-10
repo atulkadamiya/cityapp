@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130421114008) do
+ActiveRecord::Schema.define(:version => 20130810205635) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "issue_id"
@@ -26,6 +26,12 @@ ActiveRecord::Schema.define(:version => 20130421114008) do
     t.string   "uid"
     t.string   "provider"
     t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "devices", :force => true do |t|
+    t.string   "device_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -45,10 +51,11 @@ ActiveRecord::Schema.define(:version => 20130421114008) do
     t.boolean  "is_free"
     t.string   "publisher"
     t.string   "app_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.text     "description"
     t.integer  "publisher_id"
+    t.string   "product_identifier"
   end
 
   create_table "issues_users", :force => true do |t|

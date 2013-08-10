@@ -26,9 +26,15 @@
         <td>   <%= u.text_field :issue_date, size: 30 %> </td>
     </tr>
     <tr>
+        <td>   <%= u.label 'Product Identifier' %></td>
+        <td>   <%= u.text_field :product_identifier, size: 30 %> </td>
+    </tr>
+
+        <tr>
         <td>   <%= u.label 'App Id' %></td>
         <td>   <%= u.text_field :app_id, size: 30 %> </td>
     </tr>
+
     <tr>
         <td>   <%= u.label 'Is free' %></td>
         <td>   <%= u.check_box :is_free, size: 30 %> </td>

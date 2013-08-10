@@ -1,10 +1,12 @@
 class Issue < ActiveRecord::Base
-  attr_accessible :app_id, :is_free, :issue_date, :name, :publisher, :images_attributes, :attachments_attributes, :description, :previews_attributes, :user_id
+  attr_accessible :app_id, :is_free, :issue_date, :name, :publisher, :images_attributes, :attachments_attributes, :description, :previews_attributes, :user_id, :product_identifier
 	
-	validates :issue_date, :name, :publisher, :description, :presence => true
+	validates :issue_date, :name, :publisher, :description, :product_identifier, :presence => true
 	validates :images, :attachments, :previews, :presence => { :message => "not uploaded"}
 	
 	# validate :happened_at_is_valid_datetime
+  has_many :devices_issues
+  has_many :idevices, :through => :devices_issues
 
   def happened_at_is_valid_datetime
     errors.add(:issue_date, 'must be a valid date') if ((Date.parse(issue_date) rescue ArgumentError) == ArgumentError)
