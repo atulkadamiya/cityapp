@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130810205635) do
+ActiveRecord::Schema.define(:version => 20130821162201) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "issue_id"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20130810205635) do
     t.text     "description"
     t.integer  "publisher_id"
     t.string   "product_identifier"
+    t.datetime "issue_publish_date"
   end
 
   create_table "issues_users", :force => true do |t|
