@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130821162201) do
+ActiveRecord::Schema.define(:version => 20130827181256) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "issue_id"
@@ -76,6 +76,33 @@ ActiveRecord::Schema.define(:version => 20130821162201) do
     t.datetime "item_updated_at"
   end
 
+  create_table "purchases", :force => true do |t|
+    t.string   "app_id"
+    t.string   "user_id"
+    t.string   "product_identifier"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "receipts", :force => true do |t|
+    t.string   "app_id"
+    t.string   "quantity"
+    t.string   "product_identifier"
+    t.string   "type"
+    t.string   "transaction_id"
+    t.string   "user_id"
+    t.string   "purchase_date"
+    t.string   "original_purchase_date"
+    t.string   "original_transaction_id"
+    t.string   "app_item_id"
+    t.string   "version_external_identifier"
+    t.string   "bid"
+    t.string   "bvrs"
+    t.text     "base64_receipt"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
   create_table "shares", :force => true do |t|
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
@@ -83,6 +110,17 @@ ActiveRecord::Schema.define(:version => 20130821162201) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+  end
+
+  create_table "subscriptions", :force => true do |t|
+    t.string   "app_id"
+    t.string   "user_id"
+    t.string   "product_identifier"
+    t.datetime "effective_date"
+    t.datetime "expiration_date"
+    t.datetime "last_validated"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "users", :force => true do |t|

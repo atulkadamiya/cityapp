@@ -22,6 +22,9 @@ City::Application.routes.draw do
     delete 'logout' => :destroy
   end
 
+  post :confirmpurchase, :controller => "purchases", :action => "confirmpurchase"
+  resources :purchases, :only => [:index]
+
   resources :password_resets
 
 
