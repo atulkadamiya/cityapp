@@ -34,10 +34,10 @@ class PurchasesController < ApplicationController
     if @subscription
       @issues = Issue.where('issue_publish_date >= ? and issue_publish_date <= ?', @subscription.effective_date, @subscription.expiration_date)
       purchased_issues = @issues.collect(&:product_identifier)
-      render :json => { :purchased_issues => purchased_issues, :status => "success", :subscription_active => (@subscription.present? && @subscription.expiration_date > DateTime.current) }
+      render :json => { :purchased_issues => purchased_issues, :status => "success", :subscription_active => (@subscription.expiration_date > DateTime.current) }
     else
       purchased_issues = []
-      render :json => { :purchased_issues => purchased_issues, :status => "success", :subscription_active => (@subscription.present? && @subscription.expiration_date > DateTime.current) }      
+      render :json => { :purchased_issues => purchased_issues, :status => "success", :subscription_active => false }      
     end
   end
 
