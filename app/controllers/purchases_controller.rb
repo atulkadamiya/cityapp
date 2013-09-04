@@ -70,6 +70,7 @@ class PurchasesController < ApplicationController
     @receipt.app_id = params[:app_id]
     @receipt.user_id = params[:user_id]
     @receipt.product_identifier = params[:product_identifier]
+    @receipt.type = params[:type]
     @receipt.save
   end
 
