@@ -31,13 +31,15 @@ class PurchasesController < ApplicationController
 
   def index
     @subscription = Subscription.where(:app_id => params[:app_id], :user_id => params[:user_id]).last
+    @purchases = Purchases.where(:app_id => params[:app_id], :user_id => params[:user_id])
     if @subscription
       @issues = Issue.where('issue_publish_date >= ? and issue_publish_date <= ?', @subscription.effective_date, @subscription.expiration_date)
       purchased_issues = @issues.collect(&:product_identifier)
-      render :json => { :purchased_issues => purchased_issues, :status => "success", :subscription_active => (@subscription.expiration_date > DateTime.current) }
+      purchased_issues << @purchases.collect(&:product_identifier)
+      render :json => { :purchased_issues => purchased_issues.uniq, :status => "success", :subscription_active => (@subscription.expiration_date > DateTime.current) }
     else
-      purchased_issues = []
-      render :json => { :purchased_issues => purchased_issues, :status => "success", :subscription_active => false }      
+      purchased_issues = @purchases.collect(&:product_identifier)
+      render :json => { :purchased_issues => purchased_issues.uniq, :status => "success", :subscription_active => false }      
     end
   end
 
