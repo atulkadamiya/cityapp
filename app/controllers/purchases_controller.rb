@@ -31,7 +31,7 @@ class PurchasesController < ApplicationController
 
   def index
     @subscription = Subscription.where(:app_id => params[:app_id], :user_id => params[:user_id]).last
-    @purchases = Purchases.where(:app_id => params[:app_id], :user_id => params[:user_id])
+    @purchases = Purchase.where(:app_id => params[:app_id], :user_id => params[:user_id])
     if @subscription
       @issues = Issue.where('issue_publish_date >= ? and issue_publish_date <= ?', @subscription.effective_date, @subscription.expiration_date)
       purchased_issues = @issues.collect(&:product_identifier)
